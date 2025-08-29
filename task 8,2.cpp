@@ -52,3 +52,15 @@ public:
                 missHit = true; //character used their miss
             }
         }
+
+        if (hit) {
+            opponent.takeDamage(w.damage);
+            cout << " it's a hit!! " << opponent.name << " takes "
+                 << w.damage << " damage.\n";
+        } else {
+            cout << "Missed!\n";
+        }
+
+        cout << opponent.name << " health: " << opponent.health << "\n\n";
+    }
+};
