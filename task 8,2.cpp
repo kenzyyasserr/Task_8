@@ -30,3 +30,14 @@ public:
         health = h;
         missUsed = false;
     }
+
+     bool isAlive() {
+        return health > 0;
+    }
+
+    void takeDamage(int dmg) {
+        health -= dmg;
+        if (health < 0) health = 0;
+    }
+
+    
