@@ -4,14 +4,14 @@
 
 using namespace std;
 
-class Weapon {
+class weapon {
 public:
     string name;
     int damage;
-    int accuracy; // %
+    int accuracy;
 
-    Weapon() {} // default
-    Weapon(string n, int d, int a) {
+    weapon() {}
+    weapon(string n, int d, int a) {
         name = n;
         damage = d;
         accuracy = a;
@@ -22,13 +22,13 @@ class Character {
 public:
     string name;
     int health;
-    Weapon weapons[3]; 
-    bool missUsed; // each character tracks their own miss
+    weapon weapons[3]; 
+    bool missHit;
 
     Character(string n, int h) {
         name = n;
         health = h;
-        missUsed = false;
+        missHit = false;
     }
 
      bool isAlive() {
@@ -40,4 +40,15 @@ public:
         if (health < 0) health = 0;
     }
 
-    
+ void attack(Character &opponent, int weaponIndex) {
+        weapon w = weapons[weaponIndex];
+        cout << name << " attacks with " << w.name << "!\n";
+
+        bool hit = true;
+        if (!missHit) { //one miss for this character
+            int roll = rand() % 100 + 1;
+            if (roll > w.accuracy) {
+                hit = false;
+                missHit = true; //character used their miss
+            }
+        }
